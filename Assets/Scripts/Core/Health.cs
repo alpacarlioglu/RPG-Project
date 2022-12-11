@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,6 +10,8 @@ namespace RPG.Core
     public class Health : MonoBehaviour
     {
         [SerializeField] private float healthPoints = 100;
+        
+         public static event Action OnDeath;
         
         private bool isDead;
 
@@ -30,7 +34,8 @@ namespace RPG.Core
         {
             GetComponent<Animator>().SetTrigger("die");
             isDead = true;
-            GetComponent<ActionSchedular>().CancelCurrentAction();
+            GetComponent<ActionSchedular>().CancelCurrentAction(); 
+            OnDeath?.Invoke();
         }
     }
 }
