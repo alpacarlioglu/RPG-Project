@@ -10,6 +10,7 @@ namespace RPG.Combat
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] private float weaponDamage = 5f;
+        public static event Action OnDamageTaken;
 
         private Health target;
         private float timeScienceLastAttack = Mathf.Infinity;
@@ -54,6 +55,7 @@ namespace RPG.Combat
         {
             if (target == null) { return; }
             target.TakeDamage(weaponDamage);
+            OnDamageTaken?.Invoke();
         }
 
         private bool GetsIsInRange()

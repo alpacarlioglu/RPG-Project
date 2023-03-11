@@ -9,9 +9,8 @@ namespace RPG.Core
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private float healthPoints = 100;
-        
-         public static event Action OnDeath;
+        [SerializeField] public float healthPoints = 100;
+        public static event Action OnDeath;
         
         private bool isDead;
 
